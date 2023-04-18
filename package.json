@@ -1,0 +1,11 @@
+{
+  "name": "scramble-txt",
+  "version": "1.0.0",
+  "description": "Customizable interactive text scramble effects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yukseltron",
+  "license": "MIT"
+}
