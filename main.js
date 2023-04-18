@@ -1,12 +1,15 @@
-import Scramble from './scramble.js';
+import TextFX from './txt-fx.js';
 
-const scramble = new Scramble('hello');
+
+const scramble = new TextFX('.-..:-_:');
+const scramble2 = new TextFX('..B');
+const scramble3 = new TextFX('HELLO');
 
 const element1 = document.querySelector('#headline');
 const element2 = document.querySelector('#headline2');
-scramble.scramble(element1, 10);
-scramble.scramble(element2);
-
-
 const element3 = document.querySelector('#headline3');
-scramble.hoverScramble(element3);
+
+
+scramble.scramble(element1);
+scramble2.scramble(element2, 5);
+scramble3.hoverScramble(element3);
