@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
   <style>
+
+    :root {
+    }
     body {
       font-family: 'Roboto Mono', monospace;
       letter-spacing: 5px;
@@ -13,20 +16,49 @@
 
     #container {
       display: flex;
+      width: 50%;
+      margin: auto;
       flex-direction: column;
       justify-content: center;
       text-align: center;
     }
+
+    #container h1 {
+      border: 1px solid black;
+      padding: 50px;
+      margin: 20px;
+    }
+
+    #container h1:hover {
+      background-color: blue;
+      color: white;
+      transition: background-color 0.5s ease-in-out;
+    }
+
+    #container p {
+      text-align: left;
+      margin: 20px;
+      margin-top: 50px;
+    }
+
   </style>
   <title>Scrambling Text Example</title>
 </head>
 
 <body>
   <div id="container">
-    <h1 id="headline" data-text="....">ere</h1>
-    <h1 id="headline2" data-text="FTX"></h1>
-    <h1 id="headline3" data-text="HELLO">HELLO</h1>
-    <h1 id="headline4" data-text="HELLO">EVENING</h1>
+    <div>
+      <p>Scramble Loop</p>
+      <h1 id="headline" data-text="....">.-..:-_:</h1>
+    </div>
+    <div>
+      <p>Scramble Loop</p>
+      <h1 id="headline2">..B</h1>
+    </div>
+    <div>
+      <p></p>
+      <h1 id="headline3">EVENING SUN NEVER STOPS TO IMPOSE ON YOU MY LOVE</h1>
+    </div>
   </div>
   <script type="module" src="./main.js">
   </script>
