@@ -1,41 +1,95 @@
 
-export class Scramble {
-    static get PARAM() {
-        return {
-            COUNT: Infinity,
-            SPEED: 400,
-        };
+Scrambler.delay = 400;
+Scrambler.count = Infinity;
+Scrambler.items = ['%', '$', '#']
+
+
+function Scrambler(text='') {
+    this.text = text;
+
+    function sleep(milliseconds) {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+    }
+
+    this.loop = async function(element, count=Scrambler.count, delay=Scrambler.delay) {
+        for (let i = 0 ; i < count; i++) {
+            await sleep(delay);
+            element.innerHTML = this.text.split('')
+                .sort(() => 0.5 - Math.random())
+                .join('');
+        }
+        this.deloop(element, delay);
     };
 
-    constructor() {
+    this._newloop = async function(element, delay=Scrambler.delay) {
+        let arr = this.text.split("");
+        for (let i = 0; i < arr.length; i++) {
+            await sleep(delay/2);
+            let item = Scrambler.items[Math.floor(Math.random()*Scrambler.items.length)];
+            let j = Math.floor(Math.random() * arr.length);
+            arr[i] = arr[j];
+            element.innerHTML = arr.join("")
+
+            await sleep(delay/2);
+            arr[j] = item;
+            element.innerHTML = arr.join("")
+
+        }
+        this.deloop(element, delay);
     }
 
-    scramble(element, count=Scramble.PARAM.COUNT, speed=Scramble.PARAM.SPEED) {
-        window.addEventListener('load', () => {
-            this._loop(element.innerHTML, element, count, speed);
-        });
-    }
+    this.censorLoop = async function(element, delay=Scrambler.delay) {
+        let arr = this.text.split("");
+        for (let i = 0; i < arr.length; i++) {
+            await sleep(delay);
+            let item = "█"
+            if (arr[i] === " ") {
+                continue;
+            } else {
+                arr[i] = item;
+            }
+            element.innerHTML = arr.join("")
 
-    hoverScramble(element, count=5, speed=Scramble.PARAM.SPEED) {
-        element.addEventListener('mouseover', (event) => {
-            this._loop(event.target.innerHTML, element, count, speed);
-        });
-    }
-
-    _sleep = (milliseconds) => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds))
-    }
-
-    async _loop(text, element, count=Scramble.PARAM.COUNT, speed=Scramble.PARAM.SPEED) {
-
-        for (let i = 0 ; i < count; i++) {
-            await this._sleep(speed);
-            let shuffled = text.split('').sort(function(){return 0.5-Math.random()}).join('');
-            element.innerHTML = shuffled;
         }
     }
 
-
+    this.deloop = async function(element, delay=Scrambler.delay) {  
+        for (let i = 0; i < element.innerHTML.length; i++)  {
+            await sleep(delay);
+            element.innerHTML = element.innerHTML.substring(0, i) + this.text[i] + element.innerHTML.substring(i+1, element.innerHTML.length);
+        }
+    };
 }
 
-export default Scramble;
+Scrambler.prototype.hoverScramble = function(element, count=5, delay=Scrambler.delay) {
+    element.addEventListener('mouseover', () => {
+        this.loop(element, count, delay);
+    });
+};
+
+Scrambler.prototype.clickScramble = function(element, count=5, delay=Scrambler.delay) {
+    element.addEventListener('click', () => {
+        this.loop(element, count, delay);
+    });
+};
+
+Scrambler.prototype.scramble = function(element, count=Scrambler.count, delay=Scrambler.delay) {
+    window.addEventListener('load', () => {
+        this.loop(element, count, delay);
+    });
+};
+
+Scrambler.prototype.slowScramble = function(element, delay=Scrambler.delay) {
+    window.addEventListener('load', () => {
+        this._newloop(element, delay);
+    });
+};
+
+Scrambler.prototype.censor = function(element, delay=Scrambler.delay) {
+    window.addEventListener('load', () => {
+        this.censorLoop(element, delay);
+    }, {once: true});
+};
+
+
+export default Scrambler;
