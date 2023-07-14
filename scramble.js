@@ -11,17 +11,19 @@ function Scrambler(text='') {
         return new Promise(resolve => setTimeout(resolve, milliseconds));
     }
 
-    this.loop = async function(element, count=Scrambler.count, delay=Scrambler.delay) {
+    //Randomize
+    this.randomize = async function(element, count=Scrambler.count, delay=Scrambler.delay) {
         for (let i = 0 ; i < count; i++) {
             await sleep(delay);
             element.innerHTML = this.text.split('')
                 .sort(() => 0.5 - Math.random())
                 .join('');
         }
-        this.deloop(element, delay);
+        this.fix(element, delay);
     };
 
-    this._newloop = async function(element, delay=Scrambler.delay) {
+    //Scramble
+    this.scramble = async function(element, delay=Scrambler.delay) {
         let arr = this.text.split("");
         for (let i = 0; i < arr.length; i++) {
             await sleep(delay/2);
@@ -35,10 +37,10 @@ function Scrambler(text='') {
             element.innerHTML = arr.join("")
 
         }
-        this.deloop(element, delay);
+        this.fix(element, delay);
     }
 
-    this.censorLoop = async function(element, delay=Scrambler.delay) {
+    this.censor = async function(element, delay=Scrambler.delay) {
         let arr = this.text.split("");
         for (let i = 0; i < arr.length; i++) {
             await sleep(delay);
@@ -53,7 +55,7 @@ function Scrambler(text='') {
         }
     }
 
-    this.deloop = async function(element, delay=Scrambler.delay) {  
+    this.fix = async function(element, delay=Scrambler.delay) {  
         for (let i = 0; i < element.innerHTML.length; i++)  {
             await sleep(delay);
             element.innerHTML = element.innerHTML.substring(0, i) + this.text[i] + element.innerHTML.substring(i+1, element.innerHTML.length);
@@ -61,33 +63,21 @@ function Scrambler(text='') {
     };
 }
 
-Scrambler.prototype.hoverScramble = function(element, count=5, delay=Scrambler.delay) {
-    element.addEventListener('mouseover', () => {
-        this.loop(element, count, delay);
-    });
-};
-
-Scrambler.prototype.clickScramble = function(element, count=5, delay=Scrambler.delay) {
-    element.addEventListener('click', () => {
-        this.loop(element, count, delay);
-    });
-};
-
-Scrambler.prototype.scramble = function(element, count=Scrambler.count, delay=Scrambler.delay) {
+Scrambler.prototype.randomize = function(element, count=Scrambler.count, delay=Scrambler.delay) {
     window.addEventListener('load', () => {
-        this.loop(element, count, delay);
+        this.randomize(element, count, delay);
     });
 };
 
-Scrambler.prototype.slowScramble = function(element, delay=Scrambler.delay) {
+Scrambler.prototype.scramble = function(element, delay=Scrambler.delay) {
     window.addEventListener('load', () => {
-        this._newloop(element, delay);
+        this.scramble(element, delay);
     });
 };
 
 Scrambler.prototype.censor = function(element, delay=Scrambler.delay) {
     window.addEventListener('load', () => {
-        this.censorLoop(element, delay);
+        this.censor(element, delay);
     }, {once: true});
 };
 
