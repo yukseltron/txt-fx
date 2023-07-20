@@ -1,6 +1,6 @@
-import Scrambler from './fx/scrambler.js';
-import Randomizer from './fx/randomizer.js';
-import Redacter from './fx/redacter.js';
+import Scrambler from './src/scrambler.js';
+import Randomizer from './src/randomizer.js';
+import Redacter from './src/redacter.js';
 
 // Create an object that imports TextFX and future text effects and exports it all from one source like an API
 const TextFX = {

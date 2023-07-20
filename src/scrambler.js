@@ -16,12 +16,13 @@ function Scrambler() {
 
         let counter = 0;
         while (true) {
+            await sleep(delay);
+            
             counter++;
             if (counter === count) {
                 break;
             }
 
-            await sleep(delay);
             const randomIndex = Math.floor(Math.random() * textLength);
             arr[randomIndex] = Constants.items[Math.floor(Math.random() * Constants.items.length)];
             element.innerHTML = arr.join("");
