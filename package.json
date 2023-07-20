@@ -4,8 +4,11 @@
   "description": "Customizable interactive text scramble effects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "yukseltron",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.6.1"
+  }
 }
