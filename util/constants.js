@@ -1,6 +1,8 @@
 export const delay = 200;
 const count = Infinity;
-const items = ['%', '$', '#', '@', '&', '!', '?',]
+const items = [
+    '#', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=',
+  ];  
 
 export const Constants = {
     delay,
