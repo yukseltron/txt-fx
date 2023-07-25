@@ -5,9 +5,10 @@ import {sleep, fix} from "../util/helper.js";
 function Scrambler() {
     this.scramble = async function(
         element, 
-        delay,
-        count,
-        restore=true
+        delay=Constants.delay,
+        count=Constants.count,
+        restore=true,
+        items=Constants.items
     ) {
 
         const originalText = element.innerHTML;
@@ -17,14 +18,14 @@ function Scrambler() {
         let counter = 0;
         while (true) {
             await sleep(delay);
-            
+
             counter++;
             if (counter === count) {
                 break;
             }
 
             const randomIndex = Math.floor(Math.random() * textLength);
-            arr[randomIndex] = Constants.items[Math.floor(Math.random() * Constants.items.length)];
+            arr[randomIndex] = items[Math.floor(Math.random() * items.length)];
             element.innerHTML = arr.join("");
 
             if (count !== Infinity && arr.join("") === originalText) {
