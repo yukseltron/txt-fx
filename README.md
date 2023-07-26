@@ -18,7 +18,7 @@ Customizable text effects!
 To install for your project run:
 
 ```sh
-npm install 
+npm i txt-fx
 ```
 
 ## Usage
