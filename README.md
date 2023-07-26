@@ -7,8 +7,8 @@ Customizable text effects!
   - [Installation](#installation)
   - [Usage](#usage)
     - [Scrambler](#scrambler)
-    - [Randomizer](#randomizer)
-    - [Redacter](#redacter)
+    - [Shuffler](#shuffler)
+    - [Replacer](#replacer)
   - [Contributing](#contributing)
   - [Built With](#built-with)
   - [License](#license)
@@ -37,8 +37,8 @@ fx.scramble(element);
 
 ### Effects
   - [Scrambler](#scrambler)
-  - [Randomizer](#randomizer)
-  - [Redacter](#redacter)
+  - [Shuffler](#Shuffler)
+  - [Replacer](#Replacer)
 
 ### Scrambler
 
@@ -61,18 +61,18 @@ scramble(element, delay, count, restore);
 | restore | boolean | false | restore text at end of count | 
 | items | string[] | [ '@', '#', '$', ...] | random characters to use |
 
-### Randomizer
+### Shuffler
 
-`Randomizer.randomize`
+`Shuffler.shuffle`
 
-Randomizes the text's order in place.
+shuffles the text's order in place.
 
-![randomizer](https://github.com/yukseltron/txt-fx/assets/14843458/ad1febd3-577e-4a22-b3e3-015f67016816)
+![Shuffler](https://github.com/yukseltron/txt-fx/assets/14843458/ad1febd3-577e-4a22-b3e3-015f67016816)
 
 
 ```js
-const { randomize } = new TextFX.Randomizer();
-randomize(element, delay, count, restore);
+const { shuffle } = new TextFX.Shuffler();
+shuffle(element, delay, count, restore);
 ```
 
 | Parameter | Type | Default value | Description |
@@ -83,15 +83,15 @@ randomize(element, delay, count, restore);
 | restore | boolean | false | restore text at end of count | 
 
 
-### Redacter
+### Replacer
 
 Replaces each char sequentially with a given char or a char from a list of chars.
 
-![redacter](https://github.com/yukseltron/txt-fx/assets/14843458/f7b66c7e-c2d5-4cfb-acae-f3633b0d613f)
+![Replacer](https://github.com/yukseltron/txt-fx/assets/14843458/f7b66c7e-c2d5-4cfb-acae-f3633b0d613f)
 
 ```js
-const { redacter } = new TextFX.Randomizer();
-redact(element, delay, restore, char);
+const { replace } = new TextFX.Replacer();
+replace(element, delay, restore, char);
 ```
 
 | Parameter | Type | Default value | Description |
