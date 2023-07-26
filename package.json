@@ -2,6 +2,15 @@
   "name": "txt-fx",
   "version": "0.3.3",
   "description": "Customizable text effects",
+  "keywords": [
+    "text",
+    "effects",
+    "animation",
+    "customizable",
+    "scramble",
+    "randomize",
+    "redact"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "jest"
