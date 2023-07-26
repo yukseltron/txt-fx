@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/angular2-expandable-list.svg)]()
+[![NPM Version](https://badge.fury.io/js/txt-fx.svg?style=flat)](https://npmjs.org/package/txt-fx)
 # txt-fx
 
 Customizable text effects!
