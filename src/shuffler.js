@@ -2,8 +2,8 @@ import {sleep, fix} from "../util/helper.js";
 import Constants from "../util/constants.js";
 
 
-function Randomizer() {
-    this.randomize = async function(
+function Shuffler() {
+    this.shuffle = async function(
         element,
         delay=Constants.delay,
         count=Constants.count,
@@ -22,4 +22,4 @@ function Randomizer() {
     };
 }
 
-export default Randomizer;
+export default Shuffler;
