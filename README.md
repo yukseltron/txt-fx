@@ -90,7 +90,7 @@ Replaces each char sequentially with a given char or a char from a list of chars
 ![Replacer](https://github.com/yukseltron/txt-fx/assets/14843458/f7b66c7e-c2d5-4cfb-acae-f3633b0d613f)
 
 ```js
-const { Replacer } = new TextFX.Shuffler();
+const { replace } = new TextFX.Replacer();
 replace(element, delay, restore, char);
 ```
 
