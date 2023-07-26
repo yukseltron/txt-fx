@@ -1,4 +1,4 @@
-import Redacter from '../src/Redacter';
+import Replacer from '../src/Replacer';
 import { sleep, fix } from '../util/helper';
 
 // Mock the sleep and fix functions
@@ -7,7 +7,7 @@ jest.mock('../util/helper', () => ({
   fix: jest.fn(),
 }));
 
-describe('Redacter', () => {
+describe('Replacer', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -18,9 +18,9 @@ describe('Redacter', () => {
       innerHTML: mockInnerHTML,
     };
     const redactedChar = '█';
-    const redacter = new Redacter();
+    const replacer = new Replacer();
   
-    await redacter.censor(element, 100, redactedChar);
+    await replacer.replace(element, 10, redactedChar);
   
     // Ensure element's innerHTML contains only redacted characters and spaces
     const redactedRegex = new RegExp(`^([${redactedChar}\\s])+$`);
@@ -33,9 +33,9 @@ describe('Redacter', () => {
       innerHTML: mockInnerHTML,
     };
     const redactedChars = ['█', '*', '#', '$'];
-    const redacter = new Redacter();
+    const replacer = new Replacer();
   
-    await redacter.censor(element, 100, redactedChars);
+    await replacer.replace(element, 10, redactedChars);
   
     // Ensure element's innerHTML contains only redacted characters and spaces
     const escapedChars = redactedChars.map((char) => char.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('');
@@ -49,12 +49,12 @@ describe('Redacter', () => {
       innerHTML: mockInnerHTML,
     };
     const redactedChar = '█';
-    const redacter = new Redacter();
+    const replacer = new Replacer();
 
-    await redacter.censor(element, 100, true, redactedChar);
+    await replacer.replace(element, 10, true, redactedChar);
 
     // Ensure fix function was called with the correct arguments
-    expect(fix).toHaveBeenCalledWith(element, 100, mockInnerHTML);
+    expect(fix).toHaveBeenCalledWith(element, 10, mockInnerHTML);
   });
 
   it('should not restore the text if restore is false', async () => {
@@ -63,9 +63,9 @@ describe('Redacter', () => {
       innerHTML: mockInnerHTML,
     };
     const redactedChar = '█';
-    const redacter = new Redacter();
+    const replacer = new Replacer();
 
-    await redacter.censor(element, 100, false, redactedChar);
+    await replacer.replace(element, 10, false, redactedChar);
 
     // Ensure fix function was not called since restore is false
     expect(fix).not.toHaveBeenCalled();
@@ -76,12 +76,12 @@ describe('Redacter', () => {
       innerHTML: 'Hello, World!',
     };
     const redactedChar = '█';
-    const redacter = new Redacter();
+    const replacer = new Replacer();
 
-    await redacter.censor(element, 100, redactedChar);
+    await replacer.replace(element, 10, redactedChar);
 
     // Ensure sleep function was called with the correct delay
     expect(sleep).toHaveBeenCalledTimes(element.innerHTML.length);
-    expect(sleep).toHaveBeenCalledWith(100);
+    expect(sleep).toHaveBeenCalledWith(10);
   });
 });

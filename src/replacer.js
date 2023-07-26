@@ -2,10 +2,8 @@ import Constants from "../util/constants.js";
 import {sleep, fix} from "../util/helper.js";
 
 
-function Redacter() {
-
-    //Censor █ █ █
-    this.censor = async function(
+function Replacer() {
+    this.replace = async function(
         element, 
         delay=Constants.delay,
         restore=false,
@@ -29,4 +27,4 @@ function Redacter() {
     }
 }
 
-export default Redacter;
+export default Replacer;
