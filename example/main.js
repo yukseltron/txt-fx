@@ -11,9 +11,6 @@ const fx3 = new TextFX.Redacter();
 
 
 
-// fx1.scramble(element1, 100, 10, true);
-// fx2.randomize(element2, 200, 10, true);
-// fx3.censor(element3, 100, "█", true);
-fx1.scramble(element1);
-fx2.randomize(element2);
-fx3.censor(element3, 100, false, ['*', '%']);
+fx1.scramble(element1, 100, 10, true);
+fx2.randomize(element2, 200, 10, true);
+fx3.censor(element3, 100, "█", true);
