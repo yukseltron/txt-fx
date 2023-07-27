@@ -11,6 +11,10 @@
     "randomize",
     "redact"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yukseltron/txt-fx.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -20,7 +24,7 @@
       "^.+\\.jsx?$": "babel-jest"
     }
   },
-  "author": "yukseltron",
+  "author": "Yukseltron <h.yuksel04@gmail.com> (https://www.yooksel.com/)",
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.22.9",
