@@ -16,6 +16,11 @@
     "url": "https://github.com/yukseltron/txt-fx.git"
   },
   "main": "index.js",
+  "files": [
+    "index.js",
+    "src/",
+    "util/"
+  ],
   "scripts": {
     "test": "jest"
   },

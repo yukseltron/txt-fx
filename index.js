@@ -1,13 +1,17 @@
 import Scrambler from './src/scrambler.js';
 import Shuffler from './src/shuffler.js';
 import Replacer from './src/replacer.js';
+import ReverseCensor from './src/reversecensor.js';
+import Glitch from './src/glitch.js';
+import SlowReveal from './src/slowreveal.js';
 
-// Create an object that imports TextFX and future text effects and exports it all from one source like an API
 const TextFX = {
-    Scrambler: Scrambler,
-    Shuffler: Shuffler,
-    Replacer: Replacer
+    Scrambler,
+    Shuffler,
+    Replacer,
+    ReverseCensor,
+    Glitch,
+    SlowReveal,
 };
 
-// Create an instance of the Scrambler class
 export default TextFX;

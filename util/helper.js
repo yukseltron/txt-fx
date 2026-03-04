@@ -9,13 +9,13 @@ export const fix = (element, delay, text) => {
     const currentText = element.innerHTML.split("");
   
     const fixLetter = async (index) => {
+      if (index >= originalText.length) return;
       await sleep(delay);
       currentText[index] = originalText[index];
       element.innerHTML = currentText.join("");
-  
       fixLetter(index + 1);
     };
-  
+
     fixLetter(0);
 }
 
