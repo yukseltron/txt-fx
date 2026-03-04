@@ -1,16 +1,22 @@
 import TextFX from '../index.js';
 
+const scrambleEl     = document.querySelector('#scramble');
+const shuffleEl      = document.querySelector('#shuffle');
+const censorEl       = document.querySelector('#censor');
+const reverseCensorEl = document.querySelector('#reverse-censor');
+const glitchEl       = document.querySelector('#glitch');
+const slowRevealEl   = document.querySelector('#slow-reveal');
 
-const element1 = document.querySelector('#headline');
-const element2 = document.querySelector('#headline2');
-const element3 = document.querySelector('#headline3');
+const scrambler     = new TextFX.Scrambler();
+const shuffler      = new TextFX.Shuffler();
+const replacer      = new TextFX.Replacer();
+const reverseCensor = new TextFX.ReverseCensor();
+const glitch        = new TextFX.Glitch();
+const slowReveal    = new TextFX.SlowReveal();
 
-const fx1 = new TextFX.Scrambler();
-const fx2 = new TextFX.Shuffler();
-const fx3 = new TextFX.Replacer();
-
-
-
-fx1.scramble(element1, 100, 10, true);
-fx2.shuffle(element2, 200, 10, true);
-fx3.replace(element3, 100, "█", true);
+scrambler.scramble(scrambleEl, 100, 20, true);
+shuffler.shuffle(shuffleEl, 200, 10, true);
+replacer.replace(censorEl, 100, '█', true);
+reverseCensor.reveal(reverseCensorEl, 100);
+glitch.glitch(glitchEl, 60, 20, true, 0.6);
+slowReveal.reveal(slowRevealEl, 80, 3);
