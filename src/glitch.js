@@ -4,8 +4,8 @@ import { sleep, fix } from "../util/helper.js";
 
 // Rapidly corrupts random characters with glitch chars, then restores.
 // intensity (0–1) controls what fraction of characters get corrupted each frame.
-function Glitch() {
-    this.glitch = async function(
+class Glitch {
+    async glitch(
         element,
         delay=50,
         count=10,

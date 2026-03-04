@@ -1,4 +1,4 @@
-import Shuffler from '../src/Shuffler';
+import Shuffler from '../src/shuffler';
 import { sleep, fix } from '../util/helper';
 import Constants from '../util/constants';
 

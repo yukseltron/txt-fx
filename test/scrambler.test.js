@@ -1,4 +1,4 @@
-import Scrambler from '../src/Scrambler';
+import Scrambler from '../src/scrambler';
 import { sleep, fix } from '../util/helper';
 
 // Mock sleep function to avoid actual waiting during the test

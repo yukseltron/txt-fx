@@ -3,8 +3,8 @@ import { sleep } from "../util/helper.js";
 
 
 // Starts with text fully censored, then reveals each character left to right.
-function ReverseCensor() {
-    this.reveal = async function(
+class ReverseCensor {
+    async reveal(
         element,
         delay=Constants.delay,
         char="█",

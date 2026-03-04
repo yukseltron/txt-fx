@@ -1,5 +1,5 @@
 export const delay = 200;
-const count = Infinity;
+const count = 20;
 const items = [
     '#', '!', '@', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=',
 ];

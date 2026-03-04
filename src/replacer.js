@@ -2,12 +2,12 @@ import Constants from "../util/constants.js";
 import {sleep, fix} from "../util/helper.js";
 
 
-function Replacer() {
-    this.replace = async function(
-        element, 
+class Replacer {
+    async replace(
+        element,
         delay=Constants.delay,
-        restore=false,
         char="█",
+        restore=false,
     ) {
         const text = element.innerHTML;
         let arr = element.innerHTML.split("");
@@ -20,7 +20,7 @@ function Replacer() {
             } else {
                 arr[i] = item;
             }
-            element.innerHTML = arr.join("")
+            element.innerHTML = arr.join("");
         }
 
         if (restore) fix(element, delay, text);

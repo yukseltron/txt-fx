@@ -4,8 +4,8 @@ import { sleep } from "../util/helper.js";
 
 // Reveals each character left to right. Before settling, each character
 // cycles through random symbols like a slot machine.
-function SlowReveal() {
-    this.reveal = async function(
+class SlowReveal {
+    async reveal(
         element,
         delay=Constants.delay,
         scramblePerChar=3,

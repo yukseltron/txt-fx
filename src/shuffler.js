@@ -2,16 +2,16 @@ import {sleep, fix} from "../util/helper.js";
 import Constants from "../util/constants.js";
 
 
-function Shuffler() {
-    this.shuffle = async function(
+class Shuffler {
+    async shuffle(
         element,
         delay=Constants.delay,
         count=Constants.count,
-        restore=true
+        restore=true,
     ) {
         let text = element.innerHTML;
 
-        for (let i = 0 ; i < count; i++) {
+        for (let i = 0; i < count; i++) {
             await sleep(delay);
             element.innerHTML = text.split('')
                 .sort(() => 0.5 - Math.random())
@@ -19,7 +19,7 @@ function Shuffler() {
         }
 
         if (restore) fix(element, delay, text);
-    };
+    }
 }
 
 export default Shuffler;

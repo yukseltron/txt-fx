@@ -1,4 +1,4 @@
-import Replacer from '../src/Replacer';
+import Replacer from '../src/replacer';
 import { sleep, fix } from '../util/helper';
 
 // Mock the sleep and fix functions
@@ -51,7 +51,7 @@ describe('Replacer', () => {
     const redactedChar = '█';
     const replacer = new Replacer();
 
-    await replacer.replace(element, 10, true, redactedChar);
+    await replacer.replace(element, 10, redactedChar, true);
 
     // Ensure fix function was called with the correct arguments
     expect(fix).toHaveBeenCalledWith(element, 10, mockInnerHTML);
@@ -65,7 +65,7 @@ describe('Replacer', () => {
     const redactedChar = '█';
     const replacer = new Replacer();
 
-    await replacer.replace(element, 10, false, redactedChar);
+    await replacer.replace(element, 10, redactedChar, false);
 
     // Ensure fix function was not called since restore is false
     expect(fix).not.toHaveBeenCalled();
