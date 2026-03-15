@@ -1,6 +1,6 @@
 {
   "name": "txt-fx",
-  "version": "0.4.4",
+  "version": "1.0.0",
   "description": "Customizable text effects",
   "keywords": [
     "text",
@@ -8,8 +8,11 @@
     "animation",
     "customizable",
     "scramble",
-    "randomize",
-    "redact"
+    "shuffle",
+    "redact",
+    "censor",
+    "glitch",
+    "reveal"
   ],
   "repository": {
     "type": "git",
