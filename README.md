@@ -1,7 +1,7 @@
 [![NPM Version](https://badge.fury.io/js/txt-fx.svg?style=flat)](https://npmjs.org/package/txt-fx)
 # txt-fx
 
-Text effects
+Customizable text effects!
 
 ## Table of contents
   - [Installation](#installation)
