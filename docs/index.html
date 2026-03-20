@@ -1,47 +1,217 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <title>txt-fx</title>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ---- Colour tokens ---- */
+    :root {
+      --bg:          #f7f7f7;
+      --fg:          #111;
+      --border:      #ddd;
+      --muted:       #bbb;
+      --muted2:      #aaa;
+      --body-text:   #333;
+      --footer-text: #ccc;
+      --footer-link: #bbb;
+    }
+
+    html.dark {
+      --bg:          #111;
+      --fg:          #f7f7f7;
+      --border:      #2a2a2a;
+      --muted:       #555;
+      --muted2:      #666;
+      --body-text:   #bbb;
+      --footer-text: #444;
+      --footer-link: #555;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html:not(.light) {
+        --bg:          #111;
+        --fg:          #f7f7f7;
+        --border:      #2a2a2a;
+        --muted:       #555;
+        --muted2:      #666;
+        --body-text:   #bbb;
+        --footer-text: #444;
+        --footer-link: #555;
+      }
+    }
 
     body {
       font-family: 'Roboto Mono', monospace;
-      letter-spacing: 5px;
+      background: var(--bg);
+      color: var(--fg);
+      transition: background 0.2s, color 0.2s;
     }
 
-    #container {
+    /* ---- Header ---- */
+    header {
+      padding: 72px 60px 60px;
+      border-bottom: 1px solid var(--border);
       display: flex;
-      width: 50%;
-      margin: auto;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
+      justify-content: space-between;
+      align-items: flex-end;
     }
 
-    #container h1 {
-      border: 1px solid black;
-      padding: 50px;
-      margin: 20px;
+    .header-left h1 {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
       cursor: pointer;
+      display: inline-block;
+      margin-bottom: 16px;
+      user-select: none;
     }
 
-    #container h1:hover {
-      background-color: blue;
-      color: white;
-      transition: background-color 0.5s ease-in-out;
+    header .sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--muted2);
     }
 
-    #container p {
-      text-align: left;
-      margin: 20px;
-      margin-top: 50px;
+    header .sub a {
+      color: var(--muted2);
+      text-decoration: none;
     }
 
+    header .sub a:hover {
+      color: var(--fg);
+    }
+
+    #theme-toggle {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+      align-self: flex-end;
+      margin-bottom: 2px;
+    }
+
+    #theme-toggle:hover {
+      border-color: var(--fg);
+      color: var(--fg);
+    }
+
+    /* ---- Grid ---- */
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .card {
+      background: var(--bg);
+      padding: 52px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transition: background 0.2s;
+    }
+
+    .card.span-2 {
+      grid-column: span 2;
+    }
+
+    /* ---- Card internals ---- */
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .replay {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .replay:hover:not(:disabled) {
+      border-color: var(--fg);
+      color: var(--fg);
+    }
+
+    .replay:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    /* ---- Text scales ---- */
+    .text-display {
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      line-height: 1;
+    }
+
+    .text-heading {
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      line-height: 1.25;
+    }
+
+    .text-body {
+      font-size: 0.78rem;
+      line-height: 2.1;
+      letter-spacing: 0.04em;
+      color: var(--body-text);
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      padding: 28px 60px;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      color: var(--footer-text);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--footer-link);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--fg);
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 48px 28px 40px; align-items: flex-start; flex-direction: column; gap: 24px; }
+      main { grid-template-columns: 1fr; }
+      .card { padding: 40px 28px; }
+      .card.span-2 { grid-column: span 1; }
+      footer { padding: 24px 28px; }
+    }
   </style>
-  <title>txt-fx Example</title>
   <script type="importmap">
   {
     "imports": {
@@ -51,36 +221,78 @@
   }
   </script>
 </head>
-
 <body>
-  <div id="container">
-    <div>
-      <p>Scramble</p>
-      <h1 id="scramble">HELLO WORLD</h1>
-    </div>
-    <div>
-      <p>Shuffle</p>
-      <h1 id="shuffle">HELLO WORLD</h1>
-    </div>
-    <div>
-      <p>Censor</p>
-      <h1 id="censor">HELLO WORLD</h1>
-    </div>
-    <div>
-      <p>Reverse Censor</p>
-      <h1 id="reverse-censor">HELLO WORLD</h1>
-    </div>
-    <div>
-      <p>Glitch</p>
-      <h1 id="glitch">HELLO WORLD</h1>
-    </div>
-    <div>
-      <p>Slow Reveal</p>
-      <h1 id="slow-reveal">HELLO WORLD</h1>
-    </div>
-  </div>
-  <script type="module" src="./main.js">
-  </script>
-</body>
 
+  <header>
+    <div class="header-left">
+      <h1 id="header-title">TXT-FX</h1>
+      <p class="sub">customizable text effects &mdash; <a href="https://github.com/yooksel/txt-fx">github</a> &middot; <a href="https://npmjs.com/package/txt-fx">npm</a></p>
+    </div>
+    <button id="theme-toggle">Dark</button>
+  </header>
+
+  <main>
+
+    <!-- Glitch — full width, large display text -->
+    <div class="card span-2">
+      <div class="card-meta">
+        <span class="card-label">Glitch</span>
+        <button class="replay" id="replay-glitch">Replay</button>
+      </div>
+      <p class="text-display" id="glitch">TYPE CORRUPTION</p>
+    </div>
+
+    <!-- SlowReveal — left half -->
+    <div class="card">
+      <div class="card-meta">
+        <span class="card-label">Slow Reveal</span>
+        <button class="replay" id="replay-slow-reveal">Replay</button>
+      </div>
+      <p class="text-heading" id="slow-reveal">DECIPHERING</p>
+    </div>
+
+    <!-- Scrambler — right half -->
+    <div class="card">
+      <div class="card-meta">
+        <span class="card-label">Scrambler</span>
+        <button class="replay" id="replay-scramble">Replay</button>
+      </div>
+      <p class="text-heading" id="scramble">SIGNAL LOST</p>
+    </div>
+
+    <!-- Reverse Censor — full width, paragraph -->
+    <div class="card span-2">
+      <div class="card-meta">
+        <span class="card-label">Reverse Censor</span>
+        <button class="replay" id="replay-reverse-censor">Replay</button>
+      </div>
+      <p class="text-body" id="reverse-censor">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <!-- Censor — full width, paragraph -->
+    <div class="card span-2">
+      <div class="card-meta">
+        <span class="card-label">Censor</span>
+        <button class="replay" id="replay-censor">Replay</button>
+      </div>
+      <p class="text-body" id="censor">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+
+    <!-- Shuffler — full width, medium heading -->
+    <div class="card span-2">
+      <div class="card-meta">
+        <span class="card-label">Shuffler</span>
+        <button class="replay" id="replay-shuffle">Replay</button>
+      </div>
+      <p class="text-heading" id="shuffle">THE QUICK BROWN FOX</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="https://npmjs.com/package/txt-fx">npm install txt-fx</a>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
 </html>
